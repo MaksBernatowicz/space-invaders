@@ -8,8 +8,6 @@ let goingRight = true;
 let aliensRemoved = [];
 let results = 0;
 
-
-
 for (let i = 0; i < 225; i++) {
     const square = document.createElement('div');
     grid.appendChild(square);
@@ -101,11 +99,13 @@ function moveInvaders() {
     }
 }
 
-invadersId = setInterval(moveInvaders, 500);
+invadersId = setInterval(moveInvaders, 100);
 
 function shoot(e) {
     let laserId;
     let currentLaserIndex = currentShooterIndex;
+    const boomSound = new Audio('sounds/boom.wav');
+    const shootSound = new Audio('sounds/shoot.wav');
 
     function moveLaser() {
         squares[currentLaserIndex].classList.remove('laser');
@@ -116,8 +116,9 @@ function shoot(e) {
             squares[currentLaserIndex].classList.remove('laser');
             squares[currentLaserIndex].classList.remove('invader');
             squares[currentLaserIndex].classList.add('boom');
+            boomSound.play();
 
-            setTimeout(() => squares[currentLaserIndex].classList.remove('boom'), 100);
+            setTimeout(() => squares[currentLaserIndex].classList.remove('boom'), 150);
             clearInterval(laserId);
 
             const alienRemoved = alienInvaders.indexOf(currentLaserIndex);
@@ -129,10 +130,13 @@ function shoot(e) {
 
     switch (e.key) {
         case ' ':           // empty string ' ' for spacebar key
+            shootSound.play();
             laserId = setInterval(moveLaser, 50);
             break;
     }
 }
 
 document.addEventListener('keydown', shoot);
+
+
 

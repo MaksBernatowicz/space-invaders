@@ -11,28 +11,52 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    font-family: 'Press Start 2P', cursive;
 
 }
 
-.results {
-    color: orange;
-    font-size: 32px;
-    padding: 5px
+@media screen and (max-width: 459px) {
+    .results {
+        color: orange;
+        font-size: 64px;
+        padding-top: 30px;
+        text-align: center;
+        line-height: 96px;
+    }
 
+    .grid {
+        box-sizing: content-box;
+        width: 300px;
+        height: 300px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .grid div {
+        width: 20px;
+        height: 20px;
+    }
 }
 
-.grid {
-    box-sizing: content-box;
-    width: 450px;
-    height: 450px;
-    border: 1px solid black;
-    display: flex;
-    flex-wrap: wrap;
-}
+@media screen and (min-width: 460px) {
+    .results {
+        color: orange;
+        font-size: 48px;
+        padding-top: 30px
+    }
 
-.grid div {
-    width: 30px;
-    height: 30px;
+    .grid {
+        box-sizing: content-box;
+        width: 450px;
+        height: 450px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .grid div {
+        width: 30px;
+        height: 30px;
+    }
 }
 
 .invader {
@@ -46,11 +70,12 @@
 }
 
 .laser {
-    background-color: orange;
-    border-radius: 40px ;
+    background-image: url("images/rocket.png");
+    background-size: contain;
 }
 
 .boom {
-    background-color: red;
+    background-image: url("images/boom.png");
+    background-size: contain;
 }
 
