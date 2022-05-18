@@ -12,10 +12,21 @@
     align-items: center;
     flex-direction: column;
     font-family: 'Press Start 2P', cursive;
-
+    position: relative;
 }
 
 @media screen and (max-width: 459px) {
+    .title {
+        color: orange;
+        margin-top: 20px;
+    }
+
+    .signature {
+        position: absolute;
+        color: orange;
+        top: 50px;
+    }
+
     .results {
         height: 250px;
         color: orange;
@@ -49,10 +60,21 @@
 }
 
 @media screen and (min-width: 460px) {
+    .title {
+        color: orange;
+        margin-top: 20px;
+    }
+
+    .signature {
+        position: absolute;
+        color: orange;
+        top: 50px;
+    }
+
     .results {
         color: orange;
         font-size: 48px;
-        padding-top: 30px
+        padding-top: 50px
     }
 
     .grid {
@@ -89,7 +111,9 @@
     background-size: contain;
 }
 
-.border {
-    background-color: red;
-}
+/*RED COLOR OF BORDER*/
+/*ONLY FOR TESTING*/
+/*.border {*/
+/*    background-color: red;*/
+/*}*/
 
