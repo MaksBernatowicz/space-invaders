@@ -1,14 +1,14 @@
 const grid = document.querySelector('.grid');
 const resultDisplay = document.querySelector('.results');
 let width = 15;
-let currentShooterIndex = 202;
+let currentShooterIndex = 232;
 let direction = 1;
 let invadersId;
 let goingRight = true;
 let aliensRemoved = [];
 let results = 0;
 
-for (let i = 0; i < 225; i++) {
+for (let i = 0; i < 255; i++) {
     const square = document.createElement('div');
     grid.appendChild(square);
 }
@@ -16,9 +16,9 @@ for (let i = 0; i < 225; i++) {
 const squares = Array.from(document.querySelectorAll('.grid div'));
 
 const alienInvaders = [
-    0,1,2,3,4,5,6,7,8,9,
     15,16,17,18,19,20,21,22,23,24,
-    30,31,32,33,34,35,36,37,38,39
+    30,31,32,33,34,35,36,37,38,39,
+    45,46,47,48,49,50,51,52,53,54
 ]
 
 function draw() {
@@ -87,7 +87,7 @@ function moveInvaders() {
     }
 
     for (let i = 0; i < alienInvaders.length; i++) {
-        if(alienInvaders[i] > squares.length) {
+        if(alienInvaders[i] > 255) {
             resultDisplay.innerHTML = 'GAME OVER';
             clearInterval(invadersId);
         }
@@ -99,7 +99,7 @@ function moveInvaders() {
     }
 }
 
-invadersId = setInterval(moveInvaders, 100);
+invadersId = setInterval(moveInvaders, 200);
 
 function shoot(e) {
     let laserId;
@@ -125,6 +125,8 @@ function shoot(e) {
             aliensRemoved.push(alienRemoved);
             results++;
             resultDisplay.innerHTML = results;
+        } else {
+            setTimeout(() => (squares[currentLaserIndex].classList.remove('laser') && clearInterval(laserId)), 10);
         }
     }
 
