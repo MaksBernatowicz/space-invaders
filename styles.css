@@ -37,6 +37,15 @@
         width: 20px;
         height: 20px;
     }
+
+    .btn {
+        width: 90%;
+        display: flex;
+        justify-content: space-around;
+        font-size: 80px;
+        color: orange;
+        margin-top: 100px;
+    }
 }
 
 @media screen and (min-width: 460px) {
