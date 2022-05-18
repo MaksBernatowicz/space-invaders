@@ -14,6 +14,8 @@ for (let i = 0; i < 255; i++) {
 }
 
 const squares = Array.from(document.querySelectorAll('.grid div'));
+const btnLeft = document.querySelector('.btn-left');
+const btnRight = document.querySelector('.btn-right');
 
 const alienInvaders = [
     15,16,17,18,19,20,21,22,23,24,
@@ -53,6 +55,50 @@ function moveShooter (e) {
 }
 
 document.addEventListener('keydown', moveShooter);
+
+function leftBtnMove() {
+    squares[currentShooterIndex].classList.remove('shooter');
+    if (currentShooterIndex % width !== 0) currentShooterIndex -= 1;
+    squares[currentShooterIndex].classList.add('shooter');
+}
+
+function rightBtnMove() {
+    squares[currentShooterIndex].classList.remove('shooter');
+    if (currentShooterIndex % width < width - 1) currentShooterIndex += 1;
+    squares[currentShooterIndex].classList.add('shooter');
+}
+
+function shootBtn() {
+    let laserId;
+    let currentLaserIndex = currentShooterIndex;
+    const boomSound = new Audio('sounds/boom.wav');
+    const shootSound = new Audio('sounds/shoot.wav');
+
+    function moveLaser() {
+        squares[currentLaserIndex].classList.remove('laser');
+        currentLaserIndex -= width;
+        squares[currentLaserIndex].classList.add('laser');
+
+        if (squares[currentLaserIndex].classList.contains('invader')) {
+            squares[currentLaserIndex].classList.remove('laser');
+            squares[currentLaserIndex].classList.remove('invader');
+            squares[currentLaserIndex].classList.add('boom');
+            boomSound.play();
+
+            setTimeout(() => squares[currentLaserIndex].classList.remove('boom'), 150);
+            clearInterval(laserId);
+
+            const alienRemoved = alienInvaders.indexOf(currentLaserIndex);
+            aliensRemoved.push(alienRemoved);
+            results++;
+            resultDisplay.innerHTML = results;
+        } else {
+            setTimeout(() => (squares[currentLaserIndex].classList.remove('laser') && clearInterval(laserId)), 10);
+        }
+    }
+    shootSound.play();
+    laserId = setInterval(moveLaser, 50);
+}
 
 function moveInvaders() {
     const leftEdge = alienInvaders[0] % width === 0;
